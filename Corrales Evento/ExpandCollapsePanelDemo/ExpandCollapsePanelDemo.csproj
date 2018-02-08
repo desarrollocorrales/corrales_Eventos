@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{46014659-0047-4388-82D0-6DBD861B2C5A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExpandCollapsePanelDemo</RootNamespace>
+    <AssemblyName>ExpandCollapsePanelDemo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Demo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Demo.Designer.cs">
+      <DependentUpon>Demo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\eventos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eventos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmCatalogos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmCatalogos.Designer.cs">
+      <DependentUpon>frmCatalogos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmfechas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmfechas.designer.cs">
+      <DependentUpon>frmfechas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmPanelInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmPanelInicio.Designer.cs">
+      <DependentUpon>frmPanelInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmPaquete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmPaquete.designer.cs">
+      <DependentUpon>frmPaquete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmPersonas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmPersonas.designer.cs">
+      <DependentUpon>frmPersonas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmReportes.Designer.cs">
+      <DependentUpon>frmReportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmReservaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmReservaciones.designer.cs">
+      <DependentUpon>frmReservaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmSaldos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmSaldos.Designer.cs">
+      <DependentUpon>frmSaldos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmSiNoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmSiNoDialog.designer.cs">
+      <DependentUpon>frmSiNoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmTipoEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmTipoEvento.designer.cs">
+      <DependentUpon>frmTipoEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\frmUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\frmUsuario.designer.cs">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilerias\Consultas.cs" />
+    <Compile Include="Utilerias\dgvExporta.cs" />
+    <Compile Include="Utilerias\Generales.cs" />
+    <Compile Include="Utilerias\Negocio.cs" />
+    <EmbeddedResource Include="Demo.resx">
+      <DependentUpon>Demo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmCatalogos.resx">
+      <DependentUpon>frmCatalogos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmfechas.resx">
+      <DependentUpon>frmfechas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmPanelInicio.resx">
+      <DependentUpon>frmPanelInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmPaquete.resx">
+      <DependentUpon>frmPaquete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmPersonas.resx">
+      <DependentUpon>frmPersonas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmReportes.resx">
+      <DependentUpon>frmReportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmReservaciones.resx">
+      <DependentUpon>frmReservaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmSaldos.resx">
+      <DependentUpon>frmSaldos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmSiNoDialog.resx">
+      <DependentUpon>frmSiNoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmTipoEvento.resx">
+      <DependentUpon>frmTipoEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\frmUsuario.resx">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="Entidades\eventos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>eventos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MakarovDev.ExpandCollapsePanel\MakarovDev.ExpandCollapsePanel.csproj">
+      <Project>{BE76A6FE-225F-4287-9CA0-231F5AF4CDC1}</Project>
+      <Name>MakarovDev.ExpandCollapsePanel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BD\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="imagenes\baja_u.png" />
+    <Content Include="imagenes\buscar.png" />
+    <Content Include="imagenes\Buscar2.png" />
+    <Content Include="imagenes\cerrar.png" />
+    <Content Include="imagenes\clientesp.png" />
+    <Content Include="imagenes\clientes_A.png" />
+    <Content Include="imagenes\clientes_B.png" />
+    <Content Include="imagenes\clientes_M.png" />
+    <Content Include="imagenes\eventos.ico" />
+    <Content Include="imagenes\eventos.png" />
+    <Content Include="imagenes\eventosp.png" />
+    <Content Include="imagenes\nuevo.png" />
+    <Content Include="imagenes\paquetep.png" />
+    <Content Include="imagenes\paquete_a.png" />
+    <Content Include="imagenes\paquete_e.png" />
+    <Content Include="imagenes\paquete_m.png" />
+    <Content Include="imagenes\pass_cha.png" />
+    <Content Include="imagenes\recarga.png" />
+    <Content Include="imagenes\reservacion_A.png" />
+    <Content Include="imagenes\reservacion_Act.png" />
+    <Content Include="imagenes\reservacion_Eli.png" />
+    <Content Include="imagenes\selecciona.png" />
+    <Content Include="imagenes\tevento_a.png" />
+    <Content Include="imagenes\tevento_e.png" />
+    <Content Include="imagenes\tevento_m.png" />
+    <Content Include="imagenes\usuariosp.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

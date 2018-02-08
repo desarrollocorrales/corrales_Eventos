@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="corrales_eventosModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="corrales_eventosModelStoreContainer">
+          <EntitySet Name="catalogos" EntityType="corrales_eventosModel.Store.catalogos" store:Type="Tables" Schema="corrales_eventos" />
+          <EntitySet Name="cliente" EntityType="corrales_eventosModel.Store.cliente" store:Type="Tables" Schema="corrales_eventos" />
+          <EntitySet Name="paquete" EntityType="corrales_eventosModel.Store.paquete" store:Type="Tables" Schema="corrales_eventos" />
+          <EntitySet Name="permisos" EntityType="corrales_eventosModel.Store.permisos" store:Type="Tables" Schema="corrales_eventos" />
+          <EntitySet Name="reservacion" EntityType="corrales_eventosModel.Store.reservacion" store:Type="Tables" Schema="corrales_eventos" />
+          <EntitySet Name="seguimiento" EntityType="corrales_eventosModel.Store.seguimiento" store:Type="Tables" Schema="corrales_eventos" />
+          <EntitySet Name="tipo_evento" EntityType="corrales_eventosModel.Store.tipo_evento" store:Type="Tables" Schema="corrales_eventos" />
+          <EntitySet Name="usuarios" EntityType="corrales_eventosModel.Store.usuarios" store:Type="Tables" Schema="corrales_eventos" />
+          <AssociationSet Name="FK_CLIENTE" Association="corrales_eventosModel.Store.FK_CLIENTE">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="reservacion" EntitySet="reservacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDRESERVACION" Association="corrales_eventosModel.Store.FK_IDRESERVACION">
+            <End Role="reservacion" EntitySet="reservacion" />
+            <End Role="seguimiento" EntitySet="seguimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAQUETE" Association="corrales_eventosModel.Store.FK_PAQUETE">
+            <End Role="paquete" EntitySet="paquete" />
+            <End Role="reservacion" EntitySet="reservacion" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="catalogos">
+          <Key>
+            <PropertyRef Name="idcatalogo" />
+          </Key>
+          <Property Name="idcatalogo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_tabla" Type="varchar" MaxLength="500" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idcliente" />
+          </Key>
+          <Property Name="idcliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" MaxLength="500" />
+          <Property Name="direccion" Type="varchar" MaxLength="500" />
+          <Property Name="telefono" Type="varchar" MaxLength="12" />
+          <Property Name="status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="paquete">
+          <Key>
+            <PropertyRef Name="idpaquete" />
+          </Key>
+          <Property Name="idpaquete" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" MaxLength="500" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="status" Type="char" MaxLength="1" />
+          <Property Name="costo" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="idpermiso" />
+          </Key>
+          <Property Name="idpermiso" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" MaxLength="500" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="reservacion">
+          <Key>
+            <PropertyRef Name="idreservacion" />
+          </Key>
+          <Property Name="idreservacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="no_reservacion" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="idcliente" Type="int" Nullable="false" />
+          <Property Name="idpaquete" Type="int" Nullable="false" />
+          <Property Name="idusuario" Type="int" Nullable="false" />
+          <Property Name="idtevento" Type="int" Nullable="false" />
+          <Property Name="fecha_reservacion" Type="date" Nullable="false" />
+          <Property Name="hora_reservacion" Type="time" Nullable="false" />
+          <Property Name="total" Type="double" Nullable="false" />
+          <Property Name="estatus" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="saldo" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="seguimiento">
+          <Key>
+            <PropertyRef Name="idseguimiento" />
+          </Key>
+          <Property Name="idseguimiento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idreservacion" Type="int" Nullable="false" />
+          <Property Name="fecha_seguimiento" Type="date" Nullable="false" />
+          <Property Name="observacion" Type="varchar" MaxLength="500" />
+          <Property Name="deposito" Type="double" />
+          <Property Name="saldo" Type="double" />
+        </EntityType>
+        <EntityType Name="tipo_evento">
+          <Key>
+            <PropertyRef Name="idtevento" />
+          </Key>
+          <Property Name="idtevento" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="status" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="idusuario" />
+          </Key>
+          <Property Name="idusuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="varchar" MaxLength="500" />
+          <Property Name="password" Type="varchar" MaxLength="500" />
+          <Property Name="status" Type="char" MaxLength="1" />
+          <Property Name="nombre" Type="varchar" MaxLength="500" />
+          <Property Name="apellido" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_CLIENTE">
+          <End Role="cliente" Type="corrales_eventosModel.Store.cliente" Multiplicity="1" />
+          <End Role="reservacion" Type="corrales_eventosModel.Store.reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="reservacion">
+              <PropertyRef Name="idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDRESERVACION">
+          <End Role="reservacion" Type="corrales_eventosModel.Store.reservacion" Multiplicity="1" />
+          <End Role="seguimiento" Type="corrales_eventosModel.Store.seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reservacion">
+              <PropertyRef Name="idreservacion" />
+            </Principal>
+            <Dependent Role="seguimiento">
+              <PropertyRef Name="idreservacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAQUETE">
+          <End Role="paquete" Type="corrales_eventosModel.Store.paquete" Multiplicity="1" />
+          <End Role="reservacion" Type="corrales_eventosModel.Store.reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paquete">
+              <PropertyRef Name="idpaquete" />
+            </Principal>
+            <Dependent Role="reservacion">
+              <PropertyRef Name="idpaquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="corrales_eventosModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="corrales_eventosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cliente" EntityType="corrales_eventosModel.cliente" />
+          <EntitySet Name="paquete" EntityType="corrales_eventosModel.paquete" />
+          <EntitySet Name="permisos" EntityType="corrales_eventosModel.permisos" />
+          <EntitySet Name="seguimiento" EntityType="corrales_eventosModel.seguimiento" />
+          <EntitySet Name="tipo_evento" EntityType="corrales_eventosModel.tipo_evento" />
+          <EntitySet Name="usuarios" EntityType="corrales_eventosModel.usuarios" />
+          <EntitySet Name="catalogos" EntityType="corrales_eventosModel.catalogos" />
+          <EntitySet Name="reservacion" EntityType="corrales_eventosModel.reservacion" />
+          <AssociationSet Name="FK_CLIENTE" Association="corrales_eventosModel.FK_CLIENTE">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="reservacion" EntitySet="reservacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAQUETE" Association="corrales_eventosModel.FK_PAQUETE">
+            <End Role="paquete" EntitySet="paquete" />
+            <End Role="reservacion" EntitySet="reservacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDRESERVACION" Association="corrales_eventosModel.FK_IDRESERVACION">
+            <End Role="reservacion" EntitySet="reservacion" />
+            <End Role="seguimiento" EntitySet="seguimiento" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idcliente" />
+          </Key>
+          <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="direccion" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="telefono" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="reservacion" Relationship="corrales_eventosModel.FK_CLIENTE" FromRole="cliente" ToRole="reservacion" />
+        </EntityType>
+        <EntityType Name="paquete">
+          <Key>
+            <PropertyRef Name="idpaquete" />
+          </Key>
+          <Property Name="idpaquete" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="costo" Type="Double" Nullable="false" />
+          <NavigationProperty Name="reservacion" Relationship="corrales_eventosModel.FK_PAQUETE" FromRole="paquete" ToRole="reservacion" />
+        </EntityType>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="idpermiso" />
+          </Key>
+          <Property Name="idpermiso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="seguimiento">
+          <Key>
+            <PropertyRef Name="idseguimiento" />
+          </Key>
+          <Property Name="idseguimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idreservacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_seguimiento" Type="DateTime" Nullable="false" />
+          <Property Name="observacion" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="deposito" Type="Double" />
+          <Property Name="saldo" Type="Double" />
+          <NavigationProperty Name="reservacion" Relationship="corrales_eventosModel.FK_IDRESERVACION" FromRole="seguimiento" ToRole="reservacion" />
+        </EntityType>
+        <EntityType Name="tipo_evento">
+          <Key>
+            <PropertyRef Name="idtevento" />
+          </Key>
+          <Property Name="idtevento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="descripcion" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="idusuario" />
+          </Key>
+          <Property Name="idusuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="status" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="nombre" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="apellido" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="catalogos">
+          <Key>
+            <PropertyRef Name="idcatalogo" />
+          </Key>
+          <Property Type="Int32" Name="idcatalogo" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre_tabla" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="status" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="reservacion">
+          <Key>
+            <PropertyRef Name="idreservacion" />
+          </Key>
+          <Property Type="Int32" Name="idreservacion" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="no_reservacion" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="idcliente" Nullable="false" />
+          <Property Type="Int32" Name="idpaquete" Nullable="false" />
+          <Property Type="Int32" Name="idusuario" Nullable="false" />
+          <Property Type="Int32" Name="idtevento" Nullable="false" />
+          <Property Type="DateTime" Name="fecha_reservacion" Nullable="false" />
+          <Property Type="Time" Name="hora_reservacion" Nullable="false" />
+          <Property Type="Double" Name="total" Nullable="false" />
+          <Property Type="String" Name="estatus" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="saldo" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="corrales_eventosModel.FK_CLIENTE" FromRole="reservacion" ToRole="cliente" />
+          <NavigationProperty Name="paquete" Relationship="corrales_eventosModel.FK_PAQUETE" FromRole="reservacion" ToRole="paquete" />
+          <NavigationProperty Name="seguimiento" Relationship="corrales_eventosModel.FK_IDRESERVACION" FromRole="reservacion" ToRole="seguimiento" />
+        </EntityType>
+        <Association Name="FK_CLIENTE">
+          <End Type="corrales_eventosModel.cliente" Role="cliente" Multiplicity="1" />
+          <End Type="corrales_eventosModel.reservacion" Role="reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="reservacion">
+              <PropertyRef Name="idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAQUETE">
+          <End Type="corrales_eventosModel.paquete" Role="paquete" Multiplicity="1" />
+          <End Type="corrales_eventosModel.reservacion" Role="reservacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paquete">
+              <PropertyRef Name="idpaquete" />
+            </Principal>
+            <Dependent Role="reservacion">
+              <PropertyRef Name="idpaquete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDRESERVACION">
+          <End Type="corrales_eventosModel.reservacion" Role="reservacion" Multiplicity="1" />
+          <End Type="corrales_eventosModel.seguimiento" Role="seguimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reservacion">
+              <PropertyRef Name="idreservacion" />
+            </Principal>
+            <Dependent Role="seguimiento">
+              <PropertyRef Name="idreservacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="corrales_eventosModelStoreContainer" CdmEntityContainer="corrales_eventosEntities">
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="corrales_eventosModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paquete">
+            <EntityTypeMapping TypeName="corrales_eventosModel.paquete">
+              <MappingFragment StoreEntitySet="paquete">
+                <ScalarProperty Name="idpaquete" ColumnName="idpaquete" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permisos">
+            <EntityTypeMapping TypeName="corrales_eventosModel.permisos">
+              <MappingFragment StoreEntitySet="permisos">
+                <ScalarProperty Name="idpermiso" ColumnName="idpermiso" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seguimiento">
+            <EntityTypeMapping TypeName="corrales_eventosModel.seguimiento">
+              <MappingFragment StoreEntitySet="seguimiento">
+                <ScalarProperty Name="idseguimiento" ColumnName="idseguimiento" />
+                <ScalarProperty Name="idreservacion" ColumnName="idreservacion" />
+                <ScalarProperty Name="fecha_seguimiento" ColumnName="fecha_seguimiento" />
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+                <ScalarProperty Name="deposito" ColumnName="deposito" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_evento">
+            <EntityTypeMapping TypeName="corrales_eventosModel.tipo_evento">
+              <MappingFragment StoreEntitySet="tipo_evento">
+                <ScalarProperty Name="idtevento" ColumnName="idtevento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="corrales_eventosModel.usuarios">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalogos">
+            <EntityTypeMapping TypeName="corrales_eventosModel.catalogos">
+              <MappingFragment StoreEntitySet="catalogos">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre_tabla" ColumnName="nombre_tabla" />
+                <ScalarProperty Name="idcatalogo" ColumnName="idcatalogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reservacion">
+            <EntityTypeMapping TypeName="corrales_eventosModel.reservacion">
+              <MappingFragment StoreEntitySet="reservacion">
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="hora_reservacion" ColumnName="hora_reservacion" />
+                <ScalarProperty Name="fecha_reservacion" ColumnName="fecha_reservacion" />
+                <ScalarProperty Name="idtevento" ColumnName="idtevento" />
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="idpaquete" ColumnName="idpaquete" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="no_reservacion" ColumnName="no_reservacion" />
+                <ScalarProperty Name="idreservacion" ColumnName="idreservacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="eventos">
+        <EntityTypeShape EntityType="corrales_eventosModel.cliente" Width="1.5" PointX="0.75" PointY="1.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="corrales_eventosModel.paquete" Width="1.5" PointX="0.75" PointY="5.625" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="corrales_eventosModel.permisos" Width="1.5" PointX="2.75" PointY="5.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="corrales_eventosModel.seguimiento" Width="1.5" PointX="5.25" PointY="1.625" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="corrales_eventosModel.tipo_evento" Width="1.5" PointX="5.5" PointY="4.5" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="corrales_eventosModel.usuarios" Width="1.5" PointX="7.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="corrales_eventosModel.catalogos" Width="1.5" PointX="7.875" PointY="3.5" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="corrales_eventosModel.reservacion" Width="1.5" PointX="3" PointY="0.875" Height="3.7109993489583317" />
+        <AssociationConnector Association="corrales_eventosModel.FK_CLIENTE" >
+          <ConnectorPoint PointX="2.25" PointY="2.7112939453125" />
+          <ConnectorPoint PointX="3" PointY="2.7112939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="corrales_eventosModel.FK_PAQUETE" >
+          <ConnectorPoint PointX="2.25" PointY="7.6990364583333335" />
+          <ConnectorPoint PointX="4.40625" PointY="7.6990364583333335" />
+          <ConnectorPoint PointX="4.40625" PointY="4.5859993489583317" />
+        </AssociationConnector>
+        <AssociationConnector Association="corrales_eventosModel.FK_IDRESERVACION" >
+          <ConnectorPoint PointX="4.5" PointY="2.8074446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="2.8074446614583337" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
